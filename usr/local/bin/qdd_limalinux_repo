@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+echo '
+[limalinux_repo]
+SigLevel = Never
+Server = https://limalinuxos.github.io/$repo/$arch
+' | sudo tee --append /etc/pacman.conf
+sudo pacman -Syyu

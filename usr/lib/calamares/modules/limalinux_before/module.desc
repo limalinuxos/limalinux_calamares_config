@@ -1,0 +1,4 @@
+name: "limalinux_before"
+type: "job"
+interface: "python"
+script: "main.py"
