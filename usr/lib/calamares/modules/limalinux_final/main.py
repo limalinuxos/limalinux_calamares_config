@@ -40,8 +40,8 @@ def detect_x11_session(target_root):
         libcalamares.utils.warning(f"Failed to detect X11 session: {e}")
     return None
 
-def build_chadwm_for_user(target_root):
-    """Build ChadWM for user with UID 1000 in the target system."""
+def build_gnome_for_user(target_root):
+    """Build gnome for user with UID 1000 in the target system."""
     try:
         result = subprocess.run(
             ["chroot", target_root, "getent", "passwd", "1000"],
@@ -50,17 +50,17 @@ def build_chadwm_for_user(target_root):
             check=True
         )
         username = result.stdout.split(":")[0]
-        config_path = f"/home/{username}/.config/arco-chadwm/chadwm"
+        config_path = f"/home/{username}/.config/limalinux_gnome/gnome"
         full_path = os.path.join(target_root, config_path)
 
         if os.path.isdir(full_path):
-            libcalamares.utils.debug(f"Building ChadWM at {config_path}")
+            libcalamares.utils.debug(f"Building gnome at {config_path}")
             subprocess.run(["make", "-B"], cwd=full_path, check=True)
             subprocess.run(["make", "install"], cwd=full_path, check=True)
         else:
-            libcalamares.utils.warning(f"Directory {config_path} not found. Skipping ChadWM build.")
+            libcalamares.utils.warning(f"Directory {config_path} not found. Skipping gnome build.")
     except Exception as e:
-        libcalamares.utils.warning(f"Failed to build ChadWM: {e}")
+        libcalamares.utils.warning(f"Failed to build gnome: {e}")
 
 def run():
     libcalamares.utils.debug("#################################")
@@ -180,18 +180,18 @@ def run():
         for grub_file in grub_defaults:
             remove_path(os.path.join(target_root, "etc/default", grub_file))
 
-    # --- Desktop-specific ChadWM logic ---
+    # --- Desktop-specific gnome logic ---
     libcalamares.utils.debug("#################################")
-    libcalamares.utils.debug("Start chadwm build")
+    libcalamares.utils.debug("Start gnome build")
     libcalamares.utils.debug("#################################\n")
 
     desktop = detect_x11_session(target_root)
     if desktop is None:
         libcalamares.utils.debug("No X11 session detected.")
-    elif desktop == "chadwm.desktop":
+    elif desktop == "gnome.desktop":
         libcalamares.utils.debug(f"Detected session file: {desktop}")
-        libcalamares.utils.debug("Detected ChadWM session. Building ChadWM.")
-        build_chadwm_for_user(target_root)
+        libcalamares.utils.debug("Detected gnome session. Building gnome.")
+        build_gnome_for_user(target_root)
     else:
         libcalamares.utils.debug(f"No specific action for session: {desktop}")
 

@@ -53,7 +53,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source=("calamares::git+https://codeberg.org/erikdubois/calamares"
-        "cal-buildra-debugging.desktop"
+        "cal_limalinux_debugging.desktop"
         "calamares_polkit"
 	"calamares-wrapper")
 sha256sums=('SKIP'
@@ -114,9 +114,9 @@ package() {
 	cd "$srcdir/$_pkgname/build"
 	DESTDIR="$pkgdir" cmake --install .
 
-	install -Dm644 "$srcdir/cal-buildra-debugging.desktop" "$pkgdir/usr/share/applications/cal-buildra-debugging.desktop"
-	install -Dm755 "$srcdir/cal-buildra-debugging.desktop" "$pkgdir/home/liveuser/Desktop/cal-buildra-debugging.desktop"
-	chmod +x "$pkgdir/home/liveuser/Desktop/cal-buildra-debugging.desktop"
+	install -Dm644 "$srcdir/cal_limalinux_debugging.desktop" "$pkgdir/usr/share/applications/cal_limalinux_debugging.desktop"
+	install -Dm755 "$srcdir/cal_limalinux_debugging.desktop" "$pkgdir/home/liveuser/Desktop/cal_limalinux_debugging.desktop"
+	chmod +x "$pkgdir/home/liveuser/Desktop/cal_limalinux_debugging.desktop"
 
 	install -Dm644 "$srcdir/calamares-wrapper" "$pkgdir/usr/local/bin/calamares-wrapper"
 	chmod +x "$pkgdir/usr/local/bin/calamares-wrapper"

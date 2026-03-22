@@ -117,7 +117,7 @@ echo -e "#     Begin limalinux_postinstall"
 echo -e "######################################################${RESET}"
 
 echo -e "${BLUE}###########################################"
-echo -e "#     Start Gnome build"
+echo -e "#     Start gnome build"
 echo -e "###########################################${RESET}"
 
 detect_desktop_and_configure

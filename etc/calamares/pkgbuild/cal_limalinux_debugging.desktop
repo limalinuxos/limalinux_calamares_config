@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=Install Buildra
-Comment=Installer for Buildra
+Name=Install Limalinux
+Comment=Installer for Limalinux
 GenericName=System Installer
 Keywords=calamares;system;installer;
 TryExec=/usr/local/bin/calamares-wrapper
