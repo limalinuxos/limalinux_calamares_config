@@ -64,7 +64,7 @@ def build_chadwm_for_user(target_root):
 
 def run():
     libcalamares.utils.debug("#################################")
-    libcalamares.utils.debug("Start kiro_final module")
+    libcalamares.utils.debug("Start limalinux_final module")
     libcalamares.utils.debug("#################################\n")
 
     target_root = libcalamares.globalstorage.value("rootMountPoint")
@@ -195,7 +195,7 @@ def run():
     else:
         libcalamares.utils.debug(f"No specific action for session: {desktop}")
 
-    # --- Kiro virtual machine check ---
+    # --- limalinux virtual machine check ---
     libcalamares.utils.debug("##############################################")
     libcalamares.utils.debug("Removing virtual machine packages")
     libcalamares.utils.debug("##############################################\n")
@@ -284,21 +284,21 @@ def run():
     except subprocess.CalledProcessError as e:
         libcalamares.utils.warning(f"Failed to remove xfce4-artwork: {e}")
 
-    # --- Remove kiro-calamares-config package ---
+    # --- Remove limalinux_calamares_config package ---
     libcalamares.utils.debug("##############################################")
-    libcalamares.utils.debug("Removing kiro-calamares-config package")
+    libcalamares.utils.debug("Removing limalinux_calamares_config package")
     libcalamares.utils.debug("##############################################\n")
     
     try:
         subprocess.run(
-            ["chroot", target_root, "pacman", "-R", "--noconfirm", "kiro-calamares-config"],
+            ["chroot", target_root, "pacman", "-R", "--noconfirm", "limalinux_calamares_config"],
             check=True
         )
     except subprocess.CalledProcessError as e:
-        libcalamares.utils.warning(f"Failed to remove kiro-calamares-config: {e}")
+        libcalamares.utils.warning(f"Failed to remove limalinux_calamares_config: {e}")
 
     libcalamares.utils.debug("##############################################")
-    libcalamares.utils.debug("End kiro_final module")
+    libcalamares.utils.debug("End limalinux_final module")
     libcalamares.utils.debug("##############################################\n")
 
     return None

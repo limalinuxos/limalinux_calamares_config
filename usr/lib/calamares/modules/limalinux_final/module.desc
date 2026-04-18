@@ -1,4 +1,4 @@
-name: "kiro_final"
+name: "limalinux_final"
 type: "job"
 interface: "python"
 script: "main.py"

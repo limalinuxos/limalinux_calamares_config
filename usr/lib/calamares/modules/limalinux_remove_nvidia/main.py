@@ -69,7 +69,7 @@ def remove_nvidia_packages_from_target():
 
 def run():
     libcalamares.utils.debug("#################################")
-    libcalamares.utils.debug("Start kiro_remove_nvidia")
+    libcalamares.utils.debug("Start limalinux_remove_nvidia")
     libcalamares.utils.debug("#################################\n")
 
     selection = kernel_cmdline("driver", default="free")
@@ -89,7 +89,7 @@ def run():
         libcalamares.utils.debug("Skipping NVIDIA removal because 'driver=free' not set.")
 
     libcalamares.utils.debug("#################################")
-    libcalamares.utils.debug("End kiro_remove_nvidia")
+    libcalamares.utils.debug("End limalinux_remove_nvidia")
     libcalamares.utils.debug("#################################\n")
 
     return None

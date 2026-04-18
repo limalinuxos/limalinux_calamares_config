@@ -1,5 +1,7 @@
 [Unit]
 Description=Initializes Pacman keyring
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot

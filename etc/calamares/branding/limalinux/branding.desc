@@ -8,7 +8,7 @@
 # Additional styling can be done using the stylesheet.qss
 # file, also in the branding directory.
 ---
-componentName:  kiro
+componentName:  limalinux
 
 
 ### WELCOME / OVERALL WORDING
@@ -121,13 +121,13 @@ navigation: widget
 # are visible as buttons there if the corresponding *show* keys
 # are set to "true" (they can also be overridden).
 strings:
-    productName:         kiro
-    shortProductName:    kiro
+    productName:         limalinux
+    shortProductName:    limalinux
     version:             3.0
     shortVersion:        3.0
-    versionedName:       kiro
-    shortVersionedName:  kiro
-    bootloaderEntryName: kiro
+    versionedName:       limalinux
+    shortVersionedName:  limalinux
+    bootloaderEntryName: limalinux
 
 # These images are loaded from the branding module directory.
 #
@@ -161,7 +161,7 @@ images:
     productLogo:            "squid.png"
     productIcon:            "logo.png"
     # productWallpaper:    "wallpaper.png"
-    productWelcome:            "01cal.jpg"
+    productWelcome:            "01cal.png"
 
 # Colors for text and background components.
 #

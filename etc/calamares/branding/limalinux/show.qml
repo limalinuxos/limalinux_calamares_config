@@ -33,7 +33,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background1
-            source: "01cal.jpg"
+            source: "01cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -48,7 +48,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background5
-            source: "05cal.jpg"
+            source: "02cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -62,7 +62,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background6
-            source: "06cal.jpg"
+            source: "03.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -76,7 +76,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background7
-            source: "07cal.jpg"
+            source: "01cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -90,7 +90,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background8
-            source: "08cal.jpg"
+            source: "02cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -104,7 +104,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background9
-            source: "09cal.jpg"
+            source: "02cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -118,7 +118,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background10
-            source: "10cal.jpg"
+            source: "01cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -132,7 +132,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background11
-            source: "11cal.jpg"
+            source: "02cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit
@@ -146,7 +146,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background12
-            source: "12cal.jpg"
+            source: "03cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit

@@ -40,7 +40,7 @@ class ConfigController:
             libcalamares.utils.debug("Unknown CPU vendor or detection failed.")
         
         libcalamares.utils.debug("#################################")
-        libcalamares.utils.debug("End kiro_ucode")
+        libcalamares.utils.debug("End limalinux_ucode")
         libcalamares.utils.debug("#################################\n")
 
     def run(self):
@@ -51,7 +51,7 @@ class ConfigController:
 def run():
     """Post-install configuration tasks."""
     libcalamares.utils.debug("#################################")
-    libcalamares.utils.debug("Start kiro_ucode")
+    libcalamares.utils.debug("Start limalinux_ucode")
     libcalamares.utils.debug("#################################\n")
     config = ConfigController()
     return config.run()
