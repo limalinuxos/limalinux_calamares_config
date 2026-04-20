@@ -1,7 +1,7 @@
 pkgname=calamares-limalinux
 _pkgname=calamares
 pkgver=3.4.2.r4.g841b478 # Se actualizará solo al compilar
-pkgrel=2604202000
+pkgrel=2604202010
 pkgdesc='Instalador Calamares para LimaLinux (Basado en Codeberg 3.4.x)'
 arch=('x86_64')
 url="https://codeberg.org/limalinuxos/calamares"
