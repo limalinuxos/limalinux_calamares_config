@@ -1,0 +1,37 @@
+---
+groups:
+  - name: "Navegadores Web"
+    description: "Escoge cómo quieres navegar por internet"
+    critical: false
+    hidden: false
+    selected: true
+    subgroups:
+      - name: "Firefox"
+        packages:
+          - firefox
+          - firefox-i18n-es-es
+      - name: "Google Chrome (AUR)"
+        packages:
+          - google-chrome
+  - name: "Multimedia"
+    description: "Reproductores de video y audio"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "VLC Media Player"
+        packages:
+          - vlc
+      - name: "Spotify (AUR)"
+        packages:
+          - spotify
+  - name: "Productividad"
+    description: "Herramientas de oficina"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "LibreOffice Fresh (Español)"
+        packages:
+          - libreoffice-fresh
+          - libreoffice-fresh-es

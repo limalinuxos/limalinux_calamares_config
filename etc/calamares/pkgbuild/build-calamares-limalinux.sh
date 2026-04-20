@@ -5,7 +5,7 @@ set -euo pipefail
 # Usamos $HOME para que funcione en cualquier equipo
 BASE_DIR="$HOME/limalinuxos"
 REPO_DIR="$BASE_DIR/limalinux_repo/x86_64"
-PKG_NAME="limalinux-calamares"
+PKG_NAME="calamares-limalinux"
 
 # --- Colores ---
 cyan=$(tput setaf 6)
@@ -42,7 +42,7 @@ echo "${cyan}>> Managing Repository...${reset}"
 mkdir -p "$REPO_DIR"
 
 # Mover el paquete generado
-# Buscamos archivos que empiecen por limalinux-calamares
+# Buscamos archivos que empiecen por calamares-limalinux
 if ls ${PKG_NAME}*.pkg.tar.zst 1> /dev/null 2>&1; then
     echo "Moving package to $REPO_DIR"
     mv ${PKG_NAME}*.pkg.tar.zst "$REPO_DIR/"

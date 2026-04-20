@@ -1,4 +1,4 @@
-pkgname=limalinux-calamares
+pkgname=calamares-limalinux
 _pkgname=calamares
 pkgver=3.4.2.r4.g841b478 # Se actualizará solo al compilar
 pkgrel=1

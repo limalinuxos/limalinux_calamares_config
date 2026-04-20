@@ -15,8 +15,8 @@ reset=$(tput sgr0)
 # --- Variables de Ruta (Profesionales usando $HOME) ---
 source_base="$HOME/limalinuxos/limalinux_pkgbuild"
 
-# CAMBIO AQUÍ: El nombre de la carpeta de tu binario ahora es limalinux-calamares
-dir="limalinux-calamares" 
+# CAMBIO AQUÍ: El nombre de la carpeta de tu binario ahora es calamares-limalinux
+dir="calamares-limalinux" 
 
 # Destino dentro de tu repo de configuración (donde Kiro guarda el respaldo)
 destiny="$HOME/limalinuxos/limalinux_calamares_config/etc/calamares/pkgbuild"
