@@ -1,17 +1,17 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=Install ArcoLinux
-Comment=Installer for ArcoLinux
+Name=Install Limalinux
+Comment=Installer for Limalinux
 GenericName=System Installer
 Keywords=calamares;system;installer;
 TryExec=/usr/bin/calamares_polkit %f -d -style breeze
-Exec=/usr/local/bin/calamares-wrapper
+Exec=/usr/bin/calamares_wrapper
 Icon=calamares
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GTK;Settings;Security;X-GNOME-Settings-Panel;X-GNOME-SystemSettings;X-Unity-Settings-Panel;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;Utility;System;Filesystem;GNOME;Qt;KDE;
+Categories=Qt;System;Utility;Settings;
 X-AppStream-Ignore=true
 
 Name[ar]=تثبيت النظام 

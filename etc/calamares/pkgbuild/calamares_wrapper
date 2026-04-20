@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Lanzamos Calamares usando tu polkit personalizado
+/usr/bin/calamares_polkit -d
+status=$?
+
+if [ $status -ne 0 ]; then
+    zenity --question \
+        --title="LimaLinux Installer Error" \
+        --text="Calamares couldn't start. View the log file?" \
+        --width=350
+
+    if [ $? -eq 0 ]; then
+        # Esto abrirá los logs en tu terminal Alacritty
+        alacritty -e journalctl -xe | grep calamares
+    fi
+fi

@@ -1,124 +1,64 @@
-pkgname=calamares
+pkgname=limalinux-calamares
 _pkgname=calamares
-# change number in prepare as well
-pkgver=3.3.14.r132.g841b478  # placeholder; will be auto-generated
-pkgrel=3
-pkgdesc='Distribution-independent installer framework - latest git version'
-arch=('i686' 'x86_64')
-url="https://codeberg.org/erikdubois/calamares"
+pkgver=3.4.2.r4.g841b478 # Se actualizará solo al compilar
+pkgrel=1
+pkgdesc='Instalador Calamares para LimaLinux (Basado en Codeberg 3.4.x)'
+arch=('x86_64')
+url="https://codeberg.org/limalinuxos/calamares"
 license=('LGPL')
+provides=('calamares')
 conflicts=('calamares' 'calamares-git')
-provides=('calamares-next')
-depends=(
-	'boost-libs'
-	'ckbcomp'
-	'cryptsetup'
-	'doxygen'
-	'efibootmgr'
-	'gptfdisk'
-	'gtk-update-icon-cache'
-	'icu'
-	'kconfig'
-	'kcoreaddons'
-	'kcrash'
-	'ki18n'
-	'kparts'
-	'kpmcore'
-	'kservice'
-	'kwidgetsaddons'
-	'libpwquality'
-	'mkinitcpio-openswap'
-	'polkit-qt6'
-	'rsync'
-	'qt6-declarative'
-	'solid'
-	'squashfs-tools'
-	'yaml-cpp'
-)
-makedepends=(
-	'boost'
-	'cmake'
-	'extra-cmake-modules'
-	'git'
-	'fakeroot'
-	'ninja'
-	'python-jsonschema'
-	'python-pyaml'
-	'python-unidecode'
-	'qt6-tools'
-)
-backup=('usr/share/calamares/modules/bootloader.conf'
-        'usr/share/calamares/modules/displaymanager.conf'
-        'usr/share/calamares/modules/initcpio.conf'
-        'usr/share/calamares/modules/unpackfs.conf')
 
-source=("calamares::git+https://codeberg.org/erikdubois/calamares"
-        "cal-kiro.desktop"
-        "calamares_polkit"
-	"calamares-wrapper")
+depends=('boost-libs' 'ckbcomp' 'cryptsetup' 'doxygen' 'efibootmgr' 'gptfdisk' 
+         'gtk-update-icon-cache' 'icu' 'kconfig' 'kcoreaddons' 'kcrash' 
+         'ki18n' 'kparts' 'kpmcore' 'kservice' 'kwidgetsaddons' 
+         'libpwquality' 'polkit-qt6' 'rsync' 'qt6-declarative' 'solid' 
+         'squashfs-tools' 'yaml-cpp' 'dracut')
+
+makedepends=('boost' 'cmake' 'extra-cmake-modules' 'git' 'fakeroot' 'ninja' 
+             'python-jsonschema' 'python-pyaml' 'python-unidecode' 'qt6-tools')
+
+source=("git+$url.git"
+        "cal_limalinux.desktop"
+        "calamares_wrapper"
+        "calamares_polkit")
 sha256sums=('SKIP'
-            '31a07d76d5c8ffee0e88bf41119c875fafb2e0bcefdae945e748e3f9e6803d6d'
-            '966c5f0834039dc6a7529e75f70417ba2510b1e643ffb49fd25855ce9dc244b4'
-            'e4c9b9601020f2362311b9776de1aa363f6ee5d1d78a4b171ba2630644819f5b')
-
-prepare() {
-	cp -rv ../modules/* "$srcdir/$_pkgname/src/modules/"
-
-	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' "$srcdir/$_pkgname/CMakeLists.txt"
-	sed -i -e "s/desired_size = 512 \* 1024 \* 1024  \# 512MiB/desired_size = 512 \* 1024 \* 1024 \* 16  \# 8589MiB/" "$srcdir/$_pkgname/src/modules/fstab/main.py"
-}
+            '99d3b7ea463ab2c90497248eded0dc87dbcfa5d1b9d8928fcba4773f15d0c62b'
+            'd07adf5284a52bdcd013024016adf8bf0ac27418a2dc762bb39327ed0a7e9a52'
+            '966c5f0834039dc6a7529e75f70417ba2510b1e643ffb49fd25855ce9dc244b4')
 
 pkgver() {
-	cd "$srcdir/$_pkgname"
-	git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+    cd "$srcdir/$_pkgname"
+    # Esto garantiza que use la versión exacta de Codeberg
+    git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-	cd "$srcdir/$_pkgname"
-
-	cmake -S . -B build \
-		-G Ninja \
-		-DCMAKE_BUILD_RPATH_USE_ORIGIN=ON \
-		-DCMAKE_SKIP_RPATH=ON \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DCMAKE_INSTALL_LIBDIR=lib \
-		-DWITH_APPSTREAM=OFF \
-		-DWITH_PYBIND11=OFF \
-		-DWITH_QT6=ON \
-		-DSKIP_MODULES="dracut \
-			dracutlukscfg \
-			dummycpp \
-			dummyprocess \
-			dummypython \
-			dummypythonqt \
-			initramfs \
-			initramfscfg \
-			interactiveterminal \
-			keyboardq \
-			license \
-			localeq \
-			oemid \
-			packagechooserq \
-			partitionq \
-			services-openrc \
-			summaryq \
-			tracking \
-			usersq \
-			welcomeq"
-
-	cmake --build build
+    cd "$srcdir/$_pkgname"
+    cmake -S . -B build \
+        -G Ninja \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DWITH_QT6=ON \
+        -DSKIP_MODULES="dracutlukscfg;dummycpp;dummyprocess;dummypython;dummypythonqt;initramfs;initramfscfg;interactiveterminal;keyboardq;license;localeq;oemid;packagechooserq;partitionq;services-openrc;summaryq;tracking;usersq;welcomeq"
+    cmake --build build
 }
 
 package() {
-	cd "$srcdir/$_pkgname/build"
-	DESTDIR="$pkgdir" cmake --install .
+    cd "$srcdir/$_pkgname/build"
+    DESTDIR="$pkgdir" cmake --install .
 
-	install -Dm644 "$srcdir/cal-kiro.desktop" "$pkgdir/usr/share/applications/cal-kiro.desktop"
-	install -Dm644 "$srcdir/cal-kiro.desktop" "$pkgdir/home/liveuser/Desktop/cal-kiro.desktop"
+    # Instalación del Desktop en el sistema y en el Skel (para el escritorio de la ISO)
+    install -Dm644 "$srcdir/cal_limalinux.desktop" "$pkgdir/usr/share/applications/cal_limalinux.desktop"
+    install -d "$pkgdir/etc/skel/Desktop"
+    install -m755 "$srcdir/cal_limalinux.desktop" "$pkgdir/etc/skel/Desktop/cal_limalinux.desktop"
 
-	install -Dm644 "$srcdir/calamares-wrapper" "$pkgdir/usr/local/bin/calamares-wrapper"
-	chmod +x "$pkgdir/usr/local/bin/calamares-wrapper"
-	install -Dm755 "$srcdir/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
-	rm "$pkgdir/usr/share/applications/calamares.desktop"
+    # Ejecutables en /usr/bin
+    install -Dm755 "$srcdir/calamares_wrapper" "$pkgdir/usr/bin/calamares_wrapper"
+    install -Dm755 "$srcdir/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
+
+    # Limpieza de archivos que sobran (especialmente los de mkinitcpio)
+    rm -f "$pkgdir/usr/share/applications/calamares.desktop"
+    rm -f "$pkgdir/etc/calamares/modules/initcpio.conf"
 }

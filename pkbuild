@@ -1,0 +1,29 @@
+pkgname=limalinux_calamares_config
+_pkgname=limalinux_calamares_config
+pkgver=$(date +%Y.%m.%d)
+pkgrel=1
+pkgdesc="Configuración y branding de LimaLinux (separado del binario)"
+arch=('any')
+url="https://github.com/limalinuxos/${_pkgname}"
+license=('GPL3')
+# Depende del binario, pero no lo sobreescribe
+depends=('limalinux-calamares') 
+install='readme.install'
+options=(!strip !emptydirs)
+
+package() {
+    cd "${srcdir}" # Si usas git, añade /${_pkgname}
+    
+    # 1. Copiamos la configuración pura (branding, modules, settings)
+    # Esto va a /etc/calamares en la ISO instalada
+    if [ -d "etc" ]; then
+        mkdir -p "${pkgdir}/etc"
+        cp -r etc/* "${pkgdir}/etc/"
+    fi
+
+    # 2. Copiamos archivos de ayuda al sistema (scripts de personalización)
+    if [ -d "usr" ]; then
+        mkdir -p "${pkgdir}/usr"
+        cp -r usr/* "${pkgdir}/usr/"
+    fi
+}
