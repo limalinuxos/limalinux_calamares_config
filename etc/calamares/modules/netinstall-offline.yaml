@@ -1,0 +1,203 @@
+# Lista de respaldo en el ISO (sin depender de GitHub). Paquetes extra/community
+# frecuentes; sin Chaotic. Incluye apps muy habituales que encajan en repos oficiales.
+---
+groups:
+  - name: "Navegadores"
+    description: "Navegación (repos oficiales)"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Chromium"
+        critical: false
+        selected: false
+        packages:
+          - chromium
+      - name: "Firefox — idiomas"
+        critical: false
+        selected: false
+        packages:
+          - firefox-i18n-es-es
+          - firefox-i18n-en-gb
+          - firefox-i18n-de
+          - firefox-i18n-fr
+          - firefox-i18n-it
+          - firefox-i18n-pt-br
+
+  - name: "Oficina y correo"
+    description: "Documentos y productividad"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "LibreOffice Fresh + idiomas"
+        critical: false
+        selected: false
+        packages:
+          - libreoffice-fresh
+          - libreoffice-fresh-es
+          - libreoffice-fresh-en-gb
+          - libreoffice-fresh-de
+          - libreoffice-fresh-fr
+      - name: "Correo"
+        critical: false
+        selected: false
+        packages:
+          - thunderbird
+      - name: "Calendario y lectura"
+        critical: false
+        selected: false
+        packages:
+          - gnome-calendar
+          - foliate
+      - name: "E-books (Calibre)"
+        critical: false
+        selected: false
+        packages:
+          - calibre
+
+  - name: "Multimedia"
+    description: "Audio, vídeo y grabación"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "Reproductores"
+        critical: false
+        selected: false
+        packages:
+          - vlc
+          - mpv
+          - celluloid
+          - rhythmbox
+      - name: "Edición de vídeo y torrents"
+        critical: false
+        selected: false
+        packages:
+          - kdenlive
+          - qbittorrent
+      - name: "Grabación y conversión"
+        critical: false
+        selected: false
+        packages:
+          - obs-studio
+          - audacity
+          - ffmpeg
+          - handbrake
+
+  - name: "Gráficos y fotografía"
+    description: "Imagen y diseño"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "Retoque y vectorial"
+        critical: false
+        selected: false
+        packages:
+          - gimp
+          - inkscape
+          - krita
+      - name: "RAW y catálogo"
+        critical: false
+        selected: false
+        packages:
+          - darktable
+          - shotwell
+          - gthumb
+
+  - name: "Desarrollo y terminal"
+    description: "Compilación, Git y editores"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "Toolchain base"
+        critical: false
+        selected: false
+        packages:
+          - base-devel
+          - git
+          - cmake
+          - ninja
+          - meson
+          - gdb
+      - name: "CLI útiles"
+        critical: false
+        selected: false
+        packages:
+          - ripgrep
+          - fd
+          - bat
+          - fzf
+          - tmux
+      - name: "Editores"
+        critical: false
+        selected: false
+        packages:
+          - vim
+          - neovim
+          - helix
+          - micro
+
+  - name: "Sistema y copias"
+    description: "Discos, instantáneas y seguridad básica"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "Instantáneas y BTRFS"
+        critical: false
+        selected: false
+        packages:
+          - timeshift
+          - snapper
+          - btrfs-assistant
+      - name: "Capturas y escaneo"
+        critical: false
+        selected: false
+        packages:
+          - flameshot
+          - simple-scan
+      - name: "Copias y sincronización local"
+        critical: false
+        selected: false
+        packages:
+          - borgbackup
+          - restic
+          - rsync
+      - name: "Contraseñas y firewall"
+        critical: false
+        selected: false
+        packages:
+          - keepassxc
+          - bitwarden
+          - seahorse
+          - ufw
+          - gufw
+
+  - name: "Red y acceso remoto"
+    description: "Cliente SSH, sincronización ligera"
+    critical: false
+    hidden: false
+    selected: false
+    subgroups:
+      - name: "SSH, FTP y sincronización"
+        critical: false
+        selected: false
+        packages:
+          - openssh
+          - filezilla
+          - syncthing
+      - name: "Mensajería (cifrada)"
+        critical: false
+        selected: false
+        packages:
+          - signal-desktop
+      - name: "VPN (cliente)"
+        critical: false
+        selected: false
+        packages:
+          - wireguard-tools
+          - openvpn

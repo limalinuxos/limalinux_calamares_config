@@ -1,52 +1,33 @@
-# Maintainer: Daniel <limalinux>
 pkgname=limalinux_calamares_config
-_pkgname=limalinux_calamares_config
-pkgver=26.04
+pkgver=$(date +%Y.%m.%d)
 pkgrel=1
-pkgdesc="LimaLinux Calamares configuration, branding and native software selection"
+pkgdesc="LimaLinux Calamares configuration and autostart"
 arch=('any')
-url="https://github.com/limalinuxos/${_pkgname}"
-license=('GPL3')
-depends=('calamares-limalinux') 
-options=(!strip !emptydirs)
-
-# We leave source empty but use the local files during packaging
-source=()
-sha256sums=()
+depends=('calamares-limalinux')
 
 package() {
-    # We use $startdir which refers to the directory where the PKGBUILD is located.
-    # This makes the script portable and professional for Git repositories.
-    
-    echo "==> Packaging files from: $startdir"
+    # Crear el directorio raíz en el entorno del paquete
+    install -d "$pkgdir/etc"
 
-    # 1. System configuration (/etc)
-    if [ -d "${startdir}/etc" ]; then
-        echo "  -> Copying /etc files..."
-        install -d "${pkgdir}/etc"
-        cp -ra "${startdir}/etc/"* "${pkgdir}/etc/" [cite: 2]
+    # Copiar TODOS los archivos incluyendo ocultos usando la sintaxis del punto
+    cp -ra "$startdir/etc/." "$pkgdir/etc/"
+
+    # Establecer permisos correctos para settings y módulos
+    find "$pkgdir/etc/calamares" -type f -exec chmod 644 {} +
+    find "$pkgdir/etc/calamares" -type d -exec chmod 755 {} +
+
+    # Evitar conflicto con el paquete oficial gdm:
+    # /etc/gdm/custom.conf ya pertenece a 'gdm'.
+    rm -f "$pkgdir/etc/gdm/custom.conf"
+
+    # Asegurar que el autostart sea ejecutable
+    if [ -f "$pkgdir/etc/skel/.config/autostart/calamares.desktop" ]; then
+        chmod +x "$pkgdir/etc/skel/.config/autostart/calamares.desktop"
     fi
 
-    # 2. Binaries and system files (/usr)
-    if [ -d "${startdir}/usr" ]; then
-        echo "  -> Copying /usr files..."
-        install -d "${pkgdir}/usr"
-        cp -ra "${startdir}/usr/"* "${pkgdir}/usr/" [cite: 3]
+    # Copiar directorio usr/ si existe (assets, scripts, etc.)
+    if [ -d "$startdir/usr" ]; then
+        install -d "$pkgdir/usr"
+        cp -ra "$startdir/usr/." "$pkgdir/usr/"
     fi
-
-    # 3. Set execution permissions for custom scripts
-    if [ -d "${pkgdir}/usr/local/bin" ]; then
-        echo "  -> Setting execution permissions in /usr/local/bin..."
-        chmod +x "${pkgdir}/usr/local/bin/"* [cite: 4]
-    fi
-    
-    # 4. Set correct permissions for Calamares python modules
-    if [ -d "${pkgdir}/usr/lib/calamares/modules" ]; then
-        echo "  -> Setting permissions for Calamares modules..."
-        chmod -R 755 "${pkgdir}/usr/lib/calamares/modules/"* [cite: 5]
-    fi
-
-    # 5. Cleanup build files to avoid self-inclusion
-    rm -rf "${pkgdir}/etc/calamares/pkgbuild" 2>/dev/null || true
-    rm -f "${pkgdir}/etc/calamares/PKGBUILD" 2>/dev/null || true
 }

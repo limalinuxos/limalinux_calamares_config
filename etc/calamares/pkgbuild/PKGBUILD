@@ -1,8 +1,9 @@
 pkgname=calamares-limalinux
 _pkgname=calamares
-pkgver=3.4.2.r4.g841b478 # Se actualizará solo al compilar
-pkgrel=2604202026
-pkgdesc='Instalador Calamares para LimaLinux (Basado en Codeberg 3.4.x)'
+pkgver=3.4.2.r4.g841b478
+# Bump package release each build to avoid stale-cache collisions.
+pkgrel=$(date +%y%m%d%H%M)
+pkgdesc='Calamares installer for LimaLinux (Binary only)'
 arch=('x86_64')
 url="https://codeberg.org/limalinuxos/calamares"
 license=('LGPL')
@@ -24,19 +25,17 @@ source=("git+$url.git"
         "calamares_polkit")
 sha256sums=('SKIP'
             '99d3b7ea463ab2c90497248eded0dc87dbcfa5d1b9d8928fcba4773f15d0c62b'
-            'd07adf5284a52bdcd013024016adf8bf0ac27418a2dc762bb39327ed0a7e9a52'
+            '6b84a2f78c7d7d133627ac4f148fe5f13a1563d8357f82c18b552533285043e2'
             '966c5f0834039dc6a7529e75f70417ba2510b1e643ffb49fd25855ce9dc244b4')
 
 pkgver() {
     cd "$srcdir/$_pkgname"
-    # Esto garantiza que use la versión exacta de Codeberg
     git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
     cd "$srcdir/$_pkgname"
-    cmake -S . -B build \
-        -G Ninja \
+    cmake -S . -B build -G Ninja \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib \
@@ -49,16 +48,14 @@ package() {
     cd "$srcdir/$_pkgname/build"
     DESTDIR="$pkgdir" cmake --install .
 
-    # Instalación del Desktop en el sistema y en el Skel (para el escritorio de la ISO)
-    install -Dm644 "$srcdir/cal_limalinux.desktop" "$pkgdir/usr/share/applications/cal_limalinux.desktop"
-    install -d "$pkgdir/etc/skel/Desktop"
-    install -m755 "$srcdir/cal_limalinux.desktop" "$pkgdir/etc/skel/Desktop/cal_limalinux.desktop"
+    # Remove default config folder to avoid conflicts with your custom package 
+    rm -rf "$pkgdir/etc/calamares"
 
-    # Ejecutables en /usr/bin
+    # Install Desktop entry and custom wrappers
+    install -Dm644 "$srcdir/cal_limalinux.desktop" "$pkgdir/usr/share/applications/cal_limalinux.desktop"
     install -Dm755 "$srcdir/calamares_wrapper" "$pkgdir/usr/bin/calamares_wrapper"
     install -Dm755 "$srcdir/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
 
-    # Limpieza de archivos que sobran (especialmente los de mkinitcpio)
+    # Cleanup default desktop file
     rm -f "$pkgdir/usr/share/applications/calamares.desktop"
-    rm -f "$pkgdir/etc/calamares/modules/initcpio.conf"
 }

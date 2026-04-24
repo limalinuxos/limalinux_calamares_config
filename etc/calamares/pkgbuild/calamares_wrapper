@@ -11,7 +11,7 @@ if [ $status -ne 0 ]; then
         --width=350
 
     if [ $? -eq 0 ]; then
-        # Esto abrirá los logs en tu terminal Alacritty
-        alacritty -e journalctl -xe | grep calamares
+        # Esto abrirá los logs en tu terminal GNOME Console
+        gnome-console -- bash -c "journalctl -xe | grep -i calamares; read"
     fi
 fi

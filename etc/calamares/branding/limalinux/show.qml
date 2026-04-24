@@ -62,7 +62,7 @@ Presentation
         anchors.verticalCenterOffset: 0
         Image {
             id: background6
-            source: "03.png"
+            source: "03cal.png"
             width: parent.width; height: parent.height
             verticalAlignment: Image.AlignTop
             fillMode: Image.PreserveAspectFit

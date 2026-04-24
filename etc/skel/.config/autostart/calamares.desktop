@@ -1,7 +1,9 @@
 [Desktop Entry]
 Type=Application
 Name=Install LimaLinux
-Exec=sudo calamares
+Comment=Lanzador automático del instalador
+Exec=sh -c "sleep 5 && /usr/bin/calamares_wrapper -d"
 Icon=calamares
 Terminal=false
-Categories=Qt;System;
+Categories=System;
+X-GNOME-Autostart-enabled=true
