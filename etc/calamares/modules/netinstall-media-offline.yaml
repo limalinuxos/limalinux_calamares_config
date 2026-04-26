@@ -1,0 +1,20 @@
+---
+groups:
+  - name: "Media"
+    description: "Audio, video, diseño"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Viewer"
+        critical: false
+        selected: false
+        packages:
+          - evince
+          - file-roller
+      - name: "Photo"
+        critical: false
+        selected: false
+        packages:
+          - gnome-screenshot

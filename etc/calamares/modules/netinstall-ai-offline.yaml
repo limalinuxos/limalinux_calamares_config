@@ -1,0 +1,18 @@
+---
+groups:
+  - name: "AI"
+    description: "Base local"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Python AI"
+        critical: false
+        selected: false
+        packages:
+          - python
+          - python-pip
+          - python-numpy
+          - python-pandas
+          - jupyterlab

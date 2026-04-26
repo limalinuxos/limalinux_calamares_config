@@ -1,0 +1,45 @@
+---
+groups:
+  - name: "AI"
+    description: "Asistentes y modelos"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Assistants"
+        critical: false
+        selected: false
+        packages:
+          - cursor-bin
+          - antigravity
+          - code
+          - visual-studio-code-bin
+      - name: "Local LLM"
+        critical: false
+        selected: false
+        packages:
+          - ollama
+          - open-webui
+          - lm-studio-bin
+          - jan-bin
+      - name: "Python AI"
+        critical: false
+        selected: false
+        packages:
+          - python
+          - python-pip
+          - python-numpy
+          - python-pandas
+          - python-scikit-learn
+          - python-pytorch
+          - python-transformers
+          - jupyterlab
+      - name: "Data Tools"
+        critical: false
+        selected: false
+        packages:
+          - sqlitebrowser
+          - dbeaver
+          - jq
+          - yq

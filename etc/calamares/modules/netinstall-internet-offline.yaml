@@ -1,0 +1,19 @@
+---
+groups:
+  - name: "Internet"
+    description: "Navegación y red"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Browsers"
+        critical: false
+        selected: false
+        packages:
+          - firefox
+      - name: "Remote"
+        critical: false
+        selected: false
+        packages:
+          - openssh

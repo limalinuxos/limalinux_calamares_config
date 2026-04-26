@@ -1,0 +1,55 @@
+---
+groups:
+  - name: "Media"
+    description: "Audio, video, diseño"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Video"
+        critical: false
+        selected: false
+        packages:
+          - vlc
+          - mpv
+          - kdenlive
+          - shotcut
+          - obs-studio
+          - ffmpeg
+          - handbrake
+      - name: "Audio"
+        critical: false
+        selected: false
+        packages:
+          - audacity
+          - easyeffects
+          - strawberry
+          - rhythmbox
+          - pipewire
+          - pavucontrol
+      - name: "Graphics"
+        critical: false
+        selected: false
+        packages:
+          - gimp
+          - inkscape
+          - krita
+          - blender
+          - pinta
+      - name: "Photo"
+        critical: false
+        selected: false
+        packages:
+          - darktable
+          - shotwell
+          - gthumb
+          - rawtherapee
+      - name: "Documents"
+        critical: false
+        selected: false
+        packages:
+          - libreoffice-fresh
+          - thunderbird
+          - evince
+          - foliate

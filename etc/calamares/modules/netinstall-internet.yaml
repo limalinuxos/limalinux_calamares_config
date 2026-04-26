@@ -1,0 +1,52 @@
+---
+groups:
+  - name: "Internet"
+    description: "Navegación y red"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Browsers"
+        critical: false
+        selected: false
+        packages:
+          - firefox
+          - chromium
+          - brave-bin
+          - floorp
+          - tor-browser-bin
+      - name: "Chat"
+        critical: false
+        selected: false
+        packages:
+          - telegram-desktop
+          - discord
+          - signal-desktop
+          - element-desktop
+          - vesktop
+          - slack-desktop
+      - name: "Cloud"
+        critical: false
+        selected: false
+        packages:
+          - nextcloud-client
+          - syncthing
+          - rclone
+          - localsend
+      - name: "Remote"
+        critical: false
+        selected: false
+        packages:
+          - openssh
+          - filezilla
+          - remmina
+          - rustdesk-bin
+      - name: "Network"
+        critical: false
+        selected: false
+        packages:
+          - wireguard-tools
+          - openvpn
+          - networkmanager-openvpn
+          - nmap

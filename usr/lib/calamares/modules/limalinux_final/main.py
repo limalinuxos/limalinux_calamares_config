@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
 import os
+import re
 import shutil
 import subprocess
 import time
+from pathlib import Path
+
 import libcalamares
 
 def remove_path(path):
@@ -106,6 +109,36 @@ def run():
     autologin_path = os.path.join(target_root, "etc/systemd/system/getty@tty1.service.d")
     libcalamares.utils.debug("Cleaning up autologin for root")
     shutil.rmtree(autologin_path, ignore_errors=True)
+
+    # Boot to graphical login (GDM), not multi-user.tty only
+    libcalamares.utils.debug("systemctl set-default graphical.target")
+    subprocess.run(
+        ["chroot", target_root, "systemctl", "set-default", "graphical.target"],
+        check=False,
+    )
+
+    # El squashfs del ISO trae /etc/gdm/custom.conf con autologin del live (liveuser).
+    # Si sigue activo tras removeuser, GDM puede fallar y solo verás getty.
+    gdm_conf = os.path.join(target_root, "etc/gdm/custom.conf")
+    if os.path.isfile(gdm_conf):
+        try:
+            text = Path(gdm_conf).read_text(encoding="utf-8", errors="replace")
+            if "liveuser" in text:
+                libcalamares.utils.debug("Sanitizing /etc/gdm/custom.conf (drop live session)")
+                out = [ln for ln in text.splitlines() if "liveuser" not in ln]
+                new_text = "\n".join(out)
+                if re.search(
+                    r"^\s*AutomaticLoginEnable\s*=\s*true\s*$", new_text, re.MULTILINE
+                ) and not re.search(r"^\s*AutomaticLogin\s*=\s*\S+", new_text, re.MULTILINE):
+                    new_text = re.sub(
+                        r"^(\s*AutomaticLoginEnable)\s*=\s*true\s*$",
+                        r"\1=false",
+                        new_text,
+                        flags=re.MULTILINE,
+                    )
+                Path(gdm_conf).write_text(new_text + "\n", encoding="utf-8")
+        except OSError as e:
+            libcalamares.utils.warning(f"Could not sanitize gdm custom.conf: {e}")
 
     # --- Set editor to nano ---
     libcalamares.utils.debug("#################################")

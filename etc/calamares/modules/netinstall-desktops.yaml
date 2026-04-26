@@ -1,0 +1,162 @@
+---
+groups:
+  - name: "Desktops"
+    description: "Entorno"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "GNOME"
+        critical: false
+        selected: false
+        packages:
+          - gdm
+          - gnome
+          - gnome-shell
+          - gnome-control-center
+          - gnome-console
+          - gnome-keyring
+          - nautilus
+          - gnome-tweaks
+          - gnome-shell-extensions
+          - extension-manager
+          - gvfs
+          - gvfs-mtp
+          - gvfs-smb
+          - gvfs-nfs
+          - xdg-user-dirs-gtk
+      - name: "KDE Plasma"
+        critical: false
+        selected: false
+        packages:
+          - sddm
+          - plasma-desktop
+          - plasma-nm
+          - plasma-pa
+          - kde-gtk-config
+          - dolphin
+          - konsole
+          - kate
+          - gwenview
+      - name: "Xfce"
+        critical: false
+        selected: false
+        packages:
+          - lightdm
+          - lightdm-gtk-greeter
+          - xfce4
+          - xfce4-goodies
+          - thunar
+          - xfce4-terminal
+          - xfce4-screenshooter
+      - name: "Cinnamon"
+        critical: false
+        selected: false
+        packages:
+          - lightdm
+          - lightdm-gtk-greeter
+          - cinnamon
+          - gnome-terminal
+          - nemo
+          - cinnamon-translations
+      - name: "Budgie"
+        critical: false
+        selected: false
+        packages:
+          - lightdm
+          - lightdm-gtk-greeter
+          - budgie-desktop
+          - budgie-extras
+          - nemo
+          - gnome-terminal
+      - name: "MATE"
+        critical: false
+        selected: false
+        packages:
+          - lightdm
+          - lightdm-gtk-greeter
+          - mate
+          - mate-extra
+          - mate-terminal
+      - name: "LXQt"
+        critical: false
+        selected: false
+        packages:
+          - sddm
+          - lxqt
+          - qterminal
+          - pcmanfm-qt
+      - name: "Openbox"
+        critical: false
+        selected: false
+        packages:
+          - lightdm
+          - lightdm-gtk-greeter
+          - openbox
+          - obconf-qt
+          - tint2
+          - thunar
+          - xfce4-terminal
+      - name: "Cosmic"
+        critical: false
+        selected: false
+        packages:
+          - cosmic-session
+          - cosmic-comp
+          - cosmic-panel
+          - cosmic-launcher
+          - cosmic-settings
+          - cosmic-greeter
+          - xdg-desktop-portal-cosmic
+      - name: "Hyprland"
+        critical: false
+        selected: false
+        packages:
+          - sddm
+          - hyprland
+          - kitty
+          - wofi
+          - xdg-desktop-portal-hyprland
+          - wl-clipboard
+          - waybar
+      - name: "Sway"
+        critical: false
+        selected: false
+        packages:
+          - sway
+          - waybar
+          - wofi
+          - foot
+          - xdg-desktop-portal-wlr
+          - wl-clipboard
+      - name: "Niri"
+        critical: false
+        selected: false
+        packages:
+          - niri
+          - waybar
+          - wofi
+          - xwayland-satellite
+          - wl-clipboard
+      - name: "Wayfire"
+        critical: false
+        selected: false
+        packages:
+          - wayfire
+          - wf-shell
+          - wcm
+          - waybar
+          - wofi
+      - name: "Tiling X11"
+        critical: false
+        selected: false
+        packages:
+          - i3-wm
+          - i3status
+          - rofi
+          - picom
+          - dunst
+          - qtile
+          - bspwm
+          - sxhkd

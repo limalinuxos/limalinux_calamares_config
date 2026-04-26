@@ -1,0 +1,62 @@
+---
+groups:
+  - name: "System"
+    description: "Mantenimiento"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Utils"
+        critical: false
+        selected: false
+        packages:
+          - btop
+          - fastfetch
+          - ripgrep
+          - fd
+          - tmux
+          - ncdu
+          - htop
+          - smartmontools
+      - name: "Backup"
+        critical: false
+        selected: false
+        packages:
+          - timeshift
+          - snapper
+          - restic
+          - borgbackup
+          - rsync
+      - name: "Security"
+        critical: false
+        selected: false
+        packages:
+          - ufw
+          - gufw
+          - keepassxc
+          - seahorse
+          - bitwarden
+      - name: "Virtualization"
+        critical: false
+        selected: false
+        packages:
+          - qemu-full
+          - virt-manager
+          - edk2-ovmf
+          - virt-viewer
+          - dnsmasq
+      - name: "Gaming"
+        critical: false
+        selected: false
+        packages:
+          - steam
+          - lutris
+          - mangohud
+          - gamemode
+      - name: "Printing"
+        critical: false
+        selected: false
+        packages:
+          - cups
+          - system-config-printer

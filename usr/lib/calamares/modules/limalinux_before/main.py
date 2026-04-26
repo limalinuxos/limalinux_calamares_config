@@ -66,17 +66,60 @@ def optimize_makepkg_conf():
     return None
 
 # === Initialize pacman keys ===
+# chaotic-keyring is often not in the target root when unpackfs runs; the live ISO
+# has the keyring under /usr/share/pacman/keyrings/. We copy chaotic* into the
+# target before "pacman-key --populate chaotic" (that command reads those files
+# in the chroot, not the host; without them, --populate fails with status 1).
+def _copy_chaotic_keyring_to_target_if_missing():
+    target_root = libcalamares.globalstorage.value("rootMountPoint")
+    if not target_root:
+        return
+    kdir = os.path.join(target_root, "usr/share/pacman/keyrings")
+    for name in ("chaotic.gpg", "chaotic-revoked", "chaotic-trusted"):
+        dst = os.path.join(kdir, name)
+        if os.path.exists(dst):
+            continue
+        src = os.path.join("/usr/share/pacman/keyrings", name)
+        if not os.path.exists(src):
+            libcalamares.utils.warning(
+                f"Chaotic keyring not found on host, skipping: {src}"
+            )
+            continue
+        try:
+            os.makedirs(kdir, exist_ok=True)
+            shutil.copy2(src, dst)
+            libcalamares.utils.debug(f"Copied {name} to target keyring dir")
+        except OSError as e:
+            libcalamares.utils.warning(
+                f"Could not copy chaotic keyring file {name}: {e}"
+            )
+
+
 def initialize_pacman_keys():
     libcalamares.utils.debug("-> Initializing pacman-key and populating keys...")
     try:
         check_target_env_call(["pacman-key", "--init"])
         check_target_env_call(["pacman-key", "--populate", "archlinux"])
-        check_target_env_call(["pacman-key", "--populate", "chaotic"])
     except Exception as e:
         libcalamares.utils.warning(str(e))
         return (
             "pacman-key-error",
             f"Failed to initialize or populate pacman keys: <pre>{e}</pre>"
+        )
+    _copy_chaotic_keyring_to_target_if_missing()
+    troot = libcalamares.globalstorage.value("rootMountPoint")
+    chaotic_gpg = os.path.join(troot, "usr/share/pacman/keyrings/chaotic.gpg")
+    if not os.path.exists(chaotic_gpg):
+        libcalamares.utils.warning(
+            "Chaotic keyring not in target; skipped pacman-key --populate chaotic "
+            "(add chaotic-keyring to the installed system or use a live with chaotic-keyring)"
+        )
+        return None
+    try:
+        check_target_env_call(["pacman-key", "--populate", "chaotic"])
+    except Exception as e:
+        libcalamares.utils.warning(
+            f"pacman-key --populate chaotic failed (Chaotic may not work until fixed): {e!s}"
         )
     return None
 

@@ -1,0 +1,19 @@
+---
+groups:
+  - name: "Desktops"
+    description: "Entorno"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "GNOME"
+        critical: false
+        selected: false
+        packages:
+          - gdm
+          - gnome-shell
+          - gnome-control-center
+          - gnome-console
+          - gnome-keyring
+          - nautilus

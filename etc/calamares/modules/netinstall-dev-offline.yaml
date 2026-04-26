@@ -1,0 +1,17 @@
+---
+groups:
+  - name: "Dev"
+    description: "Toolchain"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Base"
+        critical: false
+        selected: false
+        packages:
+          - base-devel
+          - git
+          - vim
+          - nano

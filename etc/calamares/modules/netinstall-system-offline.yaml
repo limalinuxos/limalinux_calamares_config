@@ -1,0 +1,22 @@
+---
+groups:
+  - name: "System"
+    description: "Mantenimiento"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Utils"
+        critical: false
+        selected: false
+        packages:
+          - btop
+          - smartmontools
+          - testdisk
+      - name: "Backup"
+        critical: false
+        selected: false
+        packages:
+          - timeshift
+          - snapper

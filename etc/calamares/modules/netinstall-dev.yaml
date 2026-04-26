@@ -1,0 +1,65 @@
+---
+groups:
+  - name: "Dev"
+    description: "Toolchain"
+    critical: false
+    hidden: false
+    selected: false
+    expanded: true
+    subgroups:
+      - name: "Base"
+        critical: false
+        selected: false
+        packages:
+          - base-devel
+          - git
+          - cmake
+          - ninja
+          - meson
+          - gdb
+          - lldb
+          - github-cli
+      - name: "Languages"
+        critical: false
+        selected: false
+        packages:
+          - python
+          - python-pip
+          - nodejs
+          - npm
+          - go
+          - rust
+          - jdk-openjdk
+          - lua
+      - name: "Editors"
+        critical: false
+        selected: false
+        packages:
+          - neovim
+          - helix
+          - micro
+          - vim
+          - vscodium
+          - visual-studio-code-bin
+          - sublime-text-4
+      - name: "Containers"
+        critical: false
+        selected: false
+        packages:
+          - docker
+          - docker-compose
+          - podman
+          - podman-compose
+          - buildah
+          - skopeo
+      - name: "CLI"
+        critical: false
+        selected: false
+        packages:
+          - ripgrep
+          - fd
+          - bat
+          - fzf
+          - tmux
+          - zoxide
+          - eza
